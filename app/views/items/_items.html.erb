@@ -4,7 +4,7 @@
       <div class="item-box">
         <div class="image">
           <div class="img-wrap">
-            <% if item.present? %>
+            <% if item['imageFlag'] == 1 %>
               <%=image_tag(item['mediumImageUrls'].first['imageUrl'].gsub('?_ex=128x128', '')) %>
             <% else %>
               <%= image_tag("no-image.png" , alt: item['itemName']) %>
