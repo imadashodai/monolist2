@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
 
   has_many :ownerships , foreign_key: "user_id", dependent: :destroy
   has_many :items ,through: :ownerships
+  has_many :wants, class_name: "Want", foreign_key: "user_id", dependent: :destroy
+  has_many :want_items, through: :wants, source: :item
+  has_many :haves, class_name: "Have", foreign_key: "user_id", dependent: :destroy
+  has_many :have_items, through: :haves, source: :item
 
 
   # 他のユーザーをフォローする
@@ -31,20 +35,28 @@ class User < ActiveRecord::Base
 
   ## TODO 実装
   def have(item)
+    haves.find_or_create_by(item_id: item.id)
   end
 
   def unhave(item)
+    have = haves.find_by(item_id: item.id)
+    have.destroy if have
   end
 
   def have?(item)
+    haves.find_by(item_id: item.id)
   end
 
   def want(item)
+    wants.find_or_create_by(item_id: item.id)
   end
 
   def unwant(item)
+    have = haves.find_by(item_id: item.id)
+    have.destroy if have
   end
 
   def want?(item)
+    haves.find_by(item)
   end
 end
