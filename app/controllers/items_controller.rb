@@ -13,7 +13,10 @@ class ItemsController < ApplicationController
   end
 
   def show
-    
+    @item = Item.find(params[:id])
+    @user = Ownership.find_by(item_id: @item.id)
+    @users = User.find_by(id: @user.user_id)
+     
   end
 
   private
