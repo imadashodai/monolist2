@@ -12,13 +12,15 @@
           <h1 class="logo">
             <%= link_to "MONOLIST", root_path, class: "navbar-brand" %>
           </h1>
-          <p><%= link_to "HAVE/ランキング", ranking_have_path %></p>
-          <p><%= link_to "WANT/ランキング", ranking_want_path %></p>
+          
+          
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% unless logged_in? %>
+              <li><%= link_to "HAVE/ランキング", ranking_have_path %></li>
+              <li><%= link_to "WANT/ランキング", ranking_want_path %></li>
               <li><%= link_to "新規登録", signup_path %></li>
               <li><%= link_to "ログイン", login_path %></li>
             <% else %>
