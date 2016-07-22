@@ -5,6 +5,9 @@
 <% @ranking.each_with_index do |(item, count), rank| %>
     <ul class="ranking-list">
         <li>
+            <div class=ranking_number>
+                <p>第<%= rank + 1 %>位</p>
+            </div>
             <% if item.large_image.present? %>
                 <%= image_tag(item.large_image , alt: item.title) %>
             <% else %>
@@ -13,8 +16,9 @@
             <div class="detail">
                 <p class="title">
                     <%= item.title %>
-                <P>
-            <br>
+                </P>
+            </div>
+            <div class="detail_link">
             <%= link_to "楽天詳細ページヘ", item.detail_page_url,{:target =>"_blank"} %>
             </div>
         </li>
